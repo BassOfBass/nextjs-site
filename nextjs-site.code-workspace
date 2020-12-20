@@ -5,6 +5,11 @@
 		}
 	],
 	"settings": {
-		"editor.tabSize": 2
+		"editor.tabSize": 2,
+		"editor.foldingStrategy": "indentation",
+		"emmet.includeLanguages": {
+      "javascript": "javascriptreact"
+		},
+		"emmet.extensionsPath": "${workspaceFolder}${pathSeparator}configs${pathSeparator}emmet"
 	}
 }

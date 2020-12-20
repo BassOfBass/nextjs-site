@@ -14,10 +14,15 @@ export default function Layout({ children }) {
             </Link>
           </li>
         </ul>
-        <nav className="gnav">
+        <nav className={styles.gnav}>
           <div>
             <Link href="/authorization">
-              <a> <span className="fas fa-user-plus"></span> Register</a>
+              <a className={styles.gnavlink}><span className="fas fa-user-plus"></span> Register</a>
+            </Link>
+          </div>
+          <div>
+            <Link href="/third-party-apis">
+              <a className={styles.gnavlink}><span className="fas fa-database"></span> APIs</a>
             </Link>
           </div>
         </nav>
@@ -29,7 +34,7 @@ export default function Layout({ children }) {
 
       <footer className={styles.gfooter}>
         <address>
-          <a href="https://github.com/BassOfBass"><span className="fab fa-github"></span> My guthub</a>
+          <a href="https://github.com/BassOfBass"><span className="fab fa-github"></span> My github</a>
         </address>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

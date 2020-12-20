@@ -1,0 +1,34 @@
+.catbreeds {
+  align-self: stretch;
+
+  & .searchform {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--colour0-secondary);
+
+    & > .buttonpanel {
+      text-align: start;
+
+      & > button {
+        width: auto;
+        padding: 0;
+      }
+    }
+  }
+
+  & .breedlist {
+    display: flex;
+    flex-flow: row wrap;
+
+  }
+
+  & .pagecontrol {
+    width: 100%;
+
+    & > button {
+      width: auto;
+    }
+  }
+
+}

@@ -2,9 +2,11 @@ import Head from 'next/head'
 import { useState, FormEvent } from 'react'
 
 import Layout from "../../components/layout.js"
+
 // @ts-expect-error
 import styles from "./index.module.scss"
-export default function FirstPost() {
+
+export default function Authorization() {
 
   const [isLoggedIn, switchIsLoggedIn] = useState(false);
   const [isPassVisible, switchPassVisibility] = useState(false);
@@ -137,3 +139,4 @@ export default function FirstPost() {
     </Layout>
   )
 }
+

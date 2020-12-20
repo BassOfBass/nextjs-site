@@ -1,7 +1,38 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
+import {RecursiveMenu, RecursiveMenuItem} from '../components/menu'
 
 export default function Home() {
+  /**
+   * @type RecursiveMenuItem[]
+   */
+  const menu = [
+    {
+      title: 'Item 1',
+      children: [
+        {
+          title: 'Item 1.1',
+          children: [
+            {
+              title: 'Item 1.1.1',
+            },
+          ],
+        },
+        {
+          title: 'Item 1.2',
+        },
+      ],
+    },
+    {
+      title: 'Item 2',
+      children: [
+        {
+          title: 'Item 2.1',
+        },
+      ],
+    },
+  ];
+
   return (
     <Layout>
       <Head>
@@ -9,7 +40,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-    
       <h1>
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
@@ -42,6 +72,8 @@ export default function Home() {
             </p>
           </li>
         </ul>
+
+        <RecursiveMenu items={menu}/>
       </section>  
     </Layout>
   )

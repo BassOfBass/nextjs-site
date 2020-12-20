@@ -1,0 +1,45 @@
+.catcollection {
+  align-self: stretch;
+  position: relative;
+
+  & .searchpanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: var(--width-mobile);
+    background-color: var(--colour0-secondary);
+  }
+
+  & .buttons {
+    width: 100%;
+
+    & > button {
+      width: auto;
+    }
+  }
+
+  & .querytypes {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    gap: 1em;
+  }
+
+  & .querytype {
+    width: auto;
+    margin: 0;
+  }
+
+  & .catlist {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+  & .catentry {
+    flex: 0 0 20em;
+    border-radius: 1em;
+    border: 2px solid var(--colour0-primary);
+    padding: 1em;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "html": {
+    "snippets": {
+      "btn:b|button:button|button:b": "button[type=button] ${1}",
+      "hiddenswitch:checkbox|hide:check": "(div>button.hiddenswitch[type=button]>label.hiddenlabel[for=${0}]>{})+input#${0}.hiddenswitcher[type=checkbox id=${0} hidden]",
+      "hiddenswitch:radio|hide:rad": ""
+    }
+  }
+}

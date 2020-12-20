@@ -1,0 +1,21 @@
+.imagelink {
+  padding: 0;
+
+  &:link {
+    background-color: transparent;
+    border: 2px solid transparent;
+  }
+  &:visited {
+    background-color: transparent;
+    border: 2px solid transparent;
+  }
+
+  &:focus,
+  &:hover {
+    border: 2px solid transparent;
+  }
+
+  &:active {
+    border: 2px solid transparent;
+  }
+}

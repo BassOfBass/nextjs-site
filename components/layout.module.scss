@@ -1,6 +1,7 @@
 /* Global header */
 .gheader {
   border-bottom: 2px solid var(--colour0-primary);
+  padding: 1em 1em 0 1em;
 
   & .gtop {
     display: flex;
@@ -12,6 +13,46 @@
     & .glogo {
       font-size: 2.5em;
       text-transform: uppercase;
+      &:link{}
+      &:visited{}
+      &:focus{}
+
+      &:hover{
+        border: none;
+      }
+
+      &:active{
+        border: none;
+      }
+    }
+  }
+
+  & .gnav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    font-size: 1.5em;
+    padding: 0.5em;
+
+    & > div {
+      flex: 1 1 1;
+    }
+
+    & .gnavlink {
+      padding: 0.5em 1em;
+
+      &:link{}
+      &:visited{}
+      &:focus{}
+
+      &:hover{
+        border: none;
+      }
+
+      &:active{
+        border: none;
+      }
     }
   }
 }
