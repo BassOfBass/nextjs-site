@@ -1,0 +1,24 @@
+/* Global header */
+.gheader {
+  border-bottom: 2px solid var(--colour0-primary);
+
+  & .gtop {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+
+    & .glogo {
+      font-size: 2.5em;
+      text-transform: uppercase;
+    }
+  }
+}
+/* END Global header */
+
+/* Global footer */
+.gfooter {
+  border-top: 2px solid var(--colour0-primary);
+}
+/* END Global footer */
