@@ -18,8 +18,8 @@ export default function CatAPICategories() {
         <ul>
           <li>
             <h2>
-              <Link href={`${baseURL}/by-breed`}>
-                <a>Seatch by breed</a>
+              <Link href={`${baseURL}/breeds`}>
+                <a>The list of breeds</a>
               </Link>
             </h2>
             <ImageAnchor url="" />

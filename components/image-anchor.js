@@ -8,6 +8,7 @@ import styles from "./image-anchor.module.scss"
  * @property {string} [srcset]
  * @property {string | number} [width]
  * @property {string | number} [height]
+ * @property {string} [alt]
  * @property {{}[]} [sources]
  * @property {{}[]} [tracks]
  */
@@ -16,9 +17,9 @@ import styles from "./image-anchor.module.scss"
  * An image which is also an anchor, which allows to open it by right/middle click.
  * @param {ImageAnchorProps} props 
  */
-export default function ImageAnchor({ url, srcset, width, height, sources }) {
+export default function ImageAnchor({ url, srcset, width, height, alt, sources }) {
   return (
-    <figure>
+    <figure> 
       <a className={styles.imagelink} href={url}>
         <picture>
           <img 
@@ -26,6 +27,7 @@ export default function ImageAnchor({ url, srcset, width, height, sources }) {
             srcSet={srcset}
             width={width}
             height={height}
+            alt={alt}
           />
         </picture>
       </a>

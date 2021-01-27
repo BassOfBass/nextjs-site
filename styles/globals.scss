@@ -385,19 +385,6 @@ form {
   border: 1px solid var(--colour0-primary);
   padding: 1em;
   border-radius: 1em;
-
-  // & > * {
-  //   margin: 0.5em 0;
-
-  //   &:first-child {
-  //     margin-top: 0;
-  //   }
-
-  //   &:last-child {
-  //     margin-bottom: 0;
-  //   }
-    
-  // }
 }
 
 fieldset {
@@ -675,14 +662,20 @@ button {
   & + * {
     visibility: hidden;
     opacity: 0;
+    max-width: 0;
     max-height: 0;
-    transition-property: height, visibility, opacity;
+    padding: 0;
+    margin: 0;
+    transition-property: visibility, opacity;
   }
 
   &:checked + * {
     visibility: visible;
     opacity: 1;
+    max-width: 100%;
     max-height: 100%;
+    padding: inherit;
+    margin: inherit;
   }
 }
 /* END Hidden switchers */

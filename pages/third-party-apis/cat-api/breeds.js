@@ -1,22 +1,32 @@
 import Head from "next/head";
+import { useState } from "react";
+
 import Layout from "../../../components/layout";
-import { getCatsByBreed, CatAPIBreedShort, getBreedList} from "../../../lib/third-party-apis/cat-api";
+import { getBreedList, CatAPIBreedFull } from "../../../lib/third-party-apis/cat-api";
 
 // @ts-expect-error
-import styles from "./by-breed.module.scss";
+import styles from "./breeds.module.scss";
+import BreedList from "../../../components/third-party-apis/cats/breed-list";
 
 /**
- * @typedef CatBreedSearchProps
- * @property {{id: string, name:string}[]} breeds
- * @property {CatAPIBreedShort[]} cats
- * @property {string} defaultParama 
+ * @typedef CatBreedsState
+ * @property {CatAPIBreedFull[]} breedList
+ * @property {number} page
+ * @property {number} limit
+ * @property {URLSearchParams} searchParams 
  */
 
 /**
- * 
- * @param {CatBreedSearchProps} props 
+ * @typedef CatBreedsProps
+ * @property {CatAPIBreedFull[]} breeds
+ * @property {string} searchParams 
  */
-function CatBreedSearch({cats, breeds, defaultParams}) {
+
+/**
+ * @param {CatBreedsProps} props 
+ */
+function CatBreeds({ breeds, searchParams }) {
+  const [breedList, changeBreedList] = useState(breeds);
 
   /**
    * @param {import("react").FormEvent<HTMLFormElement>} e 
@@ -34,15 +44,15 @@ function CatBreedSearch({cats, breeds, defaultParams}) {
       <section className={styles.catbreeds}>
         <div className={styles.searchform}>
           <div className={styles.buttonpanel}>
-            <button className="hiddenswitch" type="button">
+            <button className="hiddenswitch" type="button" title="Search options">
               <label htmlFor="searchoptions" className="hiddenlabel">
-                <span className="fas fa-search"></span> Search
+                <span className="fas fa-search" aria-hidden></span>
               </label>
             </button>
           </div>
 
           <input type="checkbox" id="searchoptions" className="hiddenswitcher" hidden/>
-          <form onSubmit={handleSearch}>
+          <form id="breedsearch" className={styles.breedsearch} onSubmit={handleSearch}>
             <div>
               <label htmlFor="catbreed">Breed:</label>
               <select name="" id="catbreed" defaultValue={breeds[0].id}>
@@ -56,7 +66,7 @@ function CatBreedSearch({cats, breeds, defaultParams}) {
               <input type="number" name="limit" id="breedlimit" min="1" max="100" defaultValue="18" />
             </div>
             
-            <fieldset className="radioset">
+            {/* <fieldset className="radioset">
               <legend>Order</legend>
               <div className="radiowrapper">
                 <input type="radio" className="radiopoint" name="order" id="breedrandom" value="RANDOM" defaultChecked/>
@@ -76,7 +86,7 @@ function CatBreedSearch({cats, breeds, defaultParams}) {
                   <span className="fas fa-sort-down"></span>  Descending
                 </label>
               </div>
-            </fieldset>
+            </fieldset> */}
             <div>
               <button type="submit">
                 Submit
@@ -84,33 +94,28 @@ function CatBreedSearch({cats, breeds, defaultParams}) {
             </div>
           </form>
         </div>
-        <ul className={styles.breedlist}>
         <div className={styles.pagecontrol}>
-          <button type="button">
-            Previous page
+          <button type="submit" title="Previous page">
+            <span className="fas fa-angle-left"></span>
           </button>
-          <div>
-            <label htmlFor="breedpage">Page:</label>
-            <input type="number" name="page" id="breedpage" min="0" defaultValue="0" />
-          </div>
-          <button type="button">
-            Next page
+          <input type="number" name="page" id="breedpage" min="0" title= "Current page" defaultValue="0" form="breedsearch"/>
+          <button type="submit" title="Next page">
+            <span className="fas fa-angle-right"></span>
           </button>
         </div>
-        </ul>
+        <BreedList breeds={breedList} baseURL={null} />
       </section>
     </Layout>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+
   try {
-    // const cats = await getCatsByBreed();
     const breeds = await getBreedList();
 
     return {
       props: {
-        // cats
         breeds
       }
     }
@@ -118,6 +123,37 @@ export async function getServerSideProps() {
   } catch (error) {
     console.error(error);
   }
+
 }
 
-export default CatBreedSearch;
+/**
+ * 
+ * @param {CatBreedsState} state 
+ * @param {*} action 
+ */
+function breedSearchReducer(state, action) {
+  switch (action.type) {
+
+    case "pageup":
+      return {
+        ...state,
+        page: state.page + 1 
+      };
+
+    case "pagedown":
+      if (state.page !== 0) {
+
+        return {
+          ...state,
+          page: state.page - 1
+        };
+      } else {
+        return;
+      };
+      
+    default:
+      throw new Error("Unknown value");
+  }
+}
+
+export default CatBreeds;

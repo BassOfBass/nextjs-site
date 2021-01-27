@@ -12,22 +12,27 @@
 
       & > button {
         width: auto;
-        padding: 0;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
       }
     }
-  }
 
-  & .breedlist {
-    display: flex;
-    flex-flow: row wrap;
-
+    .breedsearch {
+      border-radius: 0 1em 1em 1em;
+      padding: 1em;
+    }
   }
 
   & .pagecontrol {
     width: 100%;
+    text-align: center;
 
     & > button {
       width: auto;
+    }
+
+    & > input{
+      max-width: 4em;
     }
   }
 
