@@ -1,0 +1,80 @@
+/* Button panels */
+.buttons {
+
+  form & {
+    text-align: center;
+
+    & > button {
+      width: auto;
+      margin: 0 1em;
+    }
+  }
+}
+
+/* Hidden switchers */
+.hiddenswitch {
+  padding: 0;
+
+  & > .hiddenlabel {
+    padding: 1em;
+    color: var(--colour0-primary);
+  }
+
+  &:active > .hiddenlabel {
+    color: var(--colour0-secondary)
+  }
+}
+
+.hiddenswitcher {
+  display: none;
+
+  & + * {
+    visibility: hidden;
+    opacity: 0;
+    max-width: 0;
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+    transition-property: visibility, opacity;
+  }
+
+  &:checked + * {
+    visibility: visible;
+    opacity: 1;
+    max-width: 100%;
+    max-height: 100%;
+    padding: inherit;
+    margin: inherit;
+  }
+}
+/* END Hidden switchers */
+
+/* Radio inputs fieldset */
+.radioset {
+
+  & .radiowrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  & .radiolabel {
+    font-size: 1.5em;
+  }
+
+  & .radiopoint {
+    position: relative;
+    appearance: none;
+    border-radius: 50%;
+    border: 1em solid transparent;
+    transition-property: all;
+    transition-duration: var(--duration-global);
+    transition-timing-function: linear;
+
+    &:checked {
+      border: 1em solid var(--colour0-primary);
+      box-shadow: none;
+    }
+  }
+}
+/* END Radio inputs fieldset */
