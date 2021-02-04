@@ -1,12 +1,15 @@
 import Head from "next/head";
 import { useState } from "react";
 
-import Layout from "../../../components/layout";
-import { getBreedList, CatAPIBreedFull } from "../../../lib/third-party-apis/cat-api";
+import Layout from "../../../../components/layout";
+import BreedList from "../../../../components/third-party-apis/cats/breed-list";
+import { retrieveAbsoluteUrl } from "../../../../lib/server";
 
 // @ts-expect-error
-import styles from "./breeds.module.scss";
-import BreedList from "../../../components/third-party-apis/cats/breed-list";
+import styles from "./index.module.scss";
+
+import { GetServerSidePropsContext } from "next";
+import { CatAPIBreedFull } from "../../../../lib/third-party-apis/cat-api";
 
 /**
  * @typedef CatBreedsState
@@ -27,6 +30,7 @@ import BreedList from "../../../components/third-party-apis/cats/breed-list";
  */
 function CatBreeds({ breeds, searchParams }) {
   const [breedList, changeBreedList] = useState(breeds);
+  console.log(breeds[0].image);
 
   /**
    * @param {import("react").FormEvent<HTMLFormElement>} e 
@@ -94,34 +98,32 @@ function CatBreeds({ breeds, searchParams }) {
             </div>
           </form>
         </div>
-        <div className={styles.pagecontrol}>
-          <button type="submit" title="Previous page">
-            <span className="fas fa-angle-left"></span>
-          </button>
-          <input type="number" name="page" id="breedpage" min="0" title= "Current page" defaultValue="0" form="breedsearch"/>
-          <button type="submit" title="Next page">
-            <span className="fas fa-angle-right"></span>
-          </button>
-        </div>
-        <BreedList breeds={breedList} baseURL={null} />
+
+        {/* <CatPagination /> */}
+
+        <BreedList breeds={breedList}/>
+        
       </section>
     </Layout>
   );
 }
 
-export async function getServerSideProps(context) {
+/**
+ * @param {GetServerSidePropsContext} context
+ */
+export async function getServerSideProps({req}) {
+  const { origin } = retrieveAbsoluteUrl(req, "localhost:3000")
+  const url = new URL("/api/cat-api/breeds", origin).toString();
+  const response = await fetch(url, {
+    method: "GET"
+  });
 
-  try {
-    const breeds = await getBreedList();
+  const breeds = await response.json();
 
-    return {
-      props: {
-        breeds
-      }
+  return {
+    props: {
+      breeds
     }
-
-  } catch (error) {
-    console.error(error);
   }
 
 }

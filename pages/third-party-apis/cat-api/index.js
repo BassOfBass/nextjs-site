@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import ImageAnchor from "../../../components/image-anchor";
 
+import ImageAnchor from "../../../components/image-anchor";
 import Layout from "../../../components/layout";
 
 const baseURL = "/third-party-apis/cat-api";

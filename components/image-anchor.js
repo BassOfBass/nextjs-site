@@ -4,7 +4,6 @@ import styles from "./image-anchor.module.scss"
 /**
  * @typedef ImageAnchorProps
  * @property {string} url
- * @property {"start" | "end"} [caption]
  * @property {string} [srcset]
  * @property {string | number} [width]
  * @property {string | number} [height]
@@ -18,9 +17,14 @@ import styles from "./image-anchor.module.scss"
  * @param {ImageAnchorProps} props 
  */
 export default function ImageAnchor({ url, srcset, width, height, alt, sources }) {
+  
   return (
     <figure> 
       <a className={styles.imagelink} href={url}>
+        {!sources 
+          ? null
+          : (sources.map(() => null))
+        }
         <picture>
           <img 
             src={url}

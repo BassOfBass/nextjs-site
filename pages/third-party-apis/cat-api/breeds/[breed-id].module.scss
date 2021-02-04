@@ -1,0 +1,37 @@
+.article {
+
+  & .header {
+    text-align: center;
+  }
+
+  & .details {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  & .info {
+    flex: 0 1 70%;
+  }
+
+  & .traits {
+    flex: 0 0 var(--width-mobile);
+  }
+
+  // & .traitscales {}
+
+  & .trait {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    
+    & > label {
+      cursor: text;
+    }
+
+    & > meter {
+      flex: 0 0 55%;
+      margin: 0.5em 0;
+    }
+  }
+}

@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+/**
+ * @param {RequestInfo} initialURL 
+ * @param {RequestInit} initialOptions 
+ */
 export function useFetch(initialURL, initialOptions) {
   const [url, setURL] = useState(initialURL);
   const [options, setOptions] = useState(initialOptions);
