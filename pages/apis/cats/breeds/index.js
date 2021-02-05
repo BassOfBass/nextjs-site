@@ -1,15 +1,14 @@
 import Head from "next/head";
 import { useState } from "react";
 
-import Layout from "../../../../components/layout";
-import BreedList from "../../../../components/third-party-apis/cats/breed-list";
-import { retrieveAbsoluteUrl } from "../../../../lib/server";
+import { Layout, BreedList } from "@components";
+import { retrieveAbsoluteUrl } from "lib/server";
 
 // @ts-expect-error
 import styles from "./index.module.scss";
 
-import { GetServerSidePropsContext } from "next";
-import { CatAPIBreedFull } from "../../../../lib/third-party-apis/cat-api";
+import { GetServerSideProps } from "next";
+import { CatAPIBreedFull } from "lib/apis/cats";
 
 /**
  * @typedef CatBreedsState
@@ -109,11 +108,11 @@ function CatBreeds({ breeds, searchParams }) {
 }
 
 /**
- * @param {GetServerSidePropsContext} context
+ * @type GetServerSideProps
  */
 export async function getServerSideProps({req}) {
   const { origin } = retrieveAbsoluteUrl(req, "localhost:3000")
-  const url = new URL("/api/cat-api/breeds", origin).toString();
+  const url = new URL("/apis/cats/breeds", origin).toString();
   const response = await fetch(url, {
     method: "GET"
   });
@@ -126,36 +125,6 @@ export async function getServerSideProps({req}) {
     }
   }
 
-}
-
-/**
- * 
- * @param {CatBreedsState} state 
- * @param {*} action 
- */
-function breedSearchReducer(state, action) {
-  switch (action.type) {
-
-    case "pageup":
-      return {
-        ...state,
-        page: state.page + 1 
-      };
-
-    case "pagedown":
-      if (state.page !== 0) {
-
-        return {
-          ...state,
-          page: state.page - 1
-        };
-      } else {
-        return;
-      };
-      
-    default:
-      throw new Error("Unknown value");
-  }
 }
 
 export default CatBreeds;

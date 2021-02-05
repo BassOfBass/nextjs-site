@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import ImageAnchor from "../../image-anchor";
-import { CatAPIBreedFull } from "../../../lib/third-party-apis/cat-api"
+import { ImageAnchor } from "@components";
+import { CatAPIBreedFull } from "../../../lib/apis/cats"
 
 // @ts-expect-error
 import styles from "./breed-list.module.scss";
@@ -43,11 +43,11 @@ export default function BreedList({ breeds }) {
             </p>
           </header>
           <section>
-            {/* <ImageAnchor 
+            <ImageAnchor 
               url={image.url} 
               width={image.width} 
               height={image.height}
-            /> */}
+            />
             <p>
               {description}
             </p>

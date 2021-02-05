@@ -1,9 +1,8 @@
 import Head from "next/head";
 import { useState } from "react";
 
-import Layout from "../../../components/layout";
-import ImageAnchor from "../../../components/image-anchor"
-import { CatAPIEntry, getCats } from "../../../lib/third-party-apis/cat-api";
+import { Layout, ImageAnchor } from "@components";
+import { CatAPIEntry} from "lib/apis/cats";
 
 
 // @ts-expect-error

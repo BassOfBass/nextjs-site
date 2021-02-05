@@ -1,15 +1,14 @@
 import Head from "next/head";
-import fetch from "node-fetch";
-import { GetServerSideProps } from "next";
 
-import Layout from "../../../../components/layout";
-import { CatAPIBreedFull } from "../../../../lib/third-party-apis/cat-api";
-import ImageAnchor from "../../../../components/image-anchor";
+import { Layout, ImageAnchor } from "@components"
+import { retrieveAbsoluteUrl } from "lib/server";
 
 // @ts-expect-error
 import styles from "./[breed-id].module.scss";
 
-import { retrieveAbsoluteUrl } from "../../../../lib/server";
+import { GetServerSideProps } from "next";
+import { CatAPIBreedFull } from "lib/apis/cats";
+
 
 /**
  * @typedef BreedDetailsProps
@@ -65,11 +64,11 @@ function BreedDetails({ breed }) {
           </p>
         </header>
         <section className={styles.details}>
-          <ImageAnchor 
+          {/* <ImageAnchor 
             url={image.url} 
             width={image.width} 
             height={image.height}
-          />
+          /> */}
 
           <div className={styles.info}>
             <h2>
@@ -81,9 +80,9 @@ function BreedDetails({ breed }) {
             <p>
               Temperament: {temperament}
             </p>
-            <p>
+            {/* <p>
               Weight: {weight.metric}
-            </p>
+            </p> */}
             <p>
               Life span: {life_span}
             </p>

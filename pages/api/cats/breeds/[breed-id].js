@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-import { CatAPIBreedFull, catKey, defaultEndPoint } from "../../../../lib/third-party-apis/cat-api";
+import { CatAPIBreedFull, catKey, defaultEndPoint } from "lib/apis/cats";
 
 import { NextApiHandler } from "next";
 
@@ -13,7 +13,7 @@ export default async function getBreedDetail(req, res) {
 
     try {
       const breedID = req.query["breed-id"];
-      const url = `${defaultEndPoint}?breed-ids=${{breedID}}`;
+      const url = `${defaultEndPoint}?breed-ids=${breedID}`;
       const response = await fetch(url, {
         method: "GET",
         headers: { "x-api-key": catKey }
@@ -22,7 +22,7 @@ export default async function getBreedDetail(req, res) {
        * @type Promise<CatAPIBreedFull>
        */
       const breed = response.json();
-      
+
       return res.status(200).json(breed);
 
     } catch (error) {

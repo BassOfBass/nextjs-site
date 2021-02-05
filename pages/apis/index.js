@@ -1,14 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import Layout from "../../components/layout";
-import ImageAnchor from "../../components/image-anchor";
-import { getRandomCat } from "../../lib/third-party-apis/cat-api";
+import { Layout, ImageAnchor } from "@components";
 
 // @ts-expect-error
 import styles from "./index.module.scss";
-
-const urlBase = "/third-party-apis";
 
 export default function ThirdPartyAPIs({randomCat}) {
   const catAPIexample = randomCat[0];
@@ -22,7 +18,7 @@ export default function ThirdPartyAPIs({randomCat}) {
         <ul className={styles.apilist}>
           <li className={styles.apiitem}>
             <h2>
-              <Link href={`${urlBase}/cat-api`}>
+              <Link href={`apis/cats`}>
                 <a>Cat API</a>
               </Link>
             </h2>
@@ -34,7 +30,7 @@ export default function ThirdPartyAPIs({randomCat}) {
           </li>
           <li className={styles.apiitem}>
             <h2>
-              <Link href={`${urlBase}/dog-api`}>
+              <Link href={`apis/dogs`}>
                 <a>Dog API</a>
               </Link>
             </h2>
@@ -45,18 +41,4 @@ export default function ThirdPartyAPIs({randomCat}) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const randomCat = await getRandomCat();
-  
-  if (!randomCat) {
-    return {
-      notFound: true
-    }
-  }
-
-  return {
-    props: {
-      randomCat
-    }
-  }
-}
+export async function getServerSideProps() {}
