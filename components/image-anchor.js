@@ -29,7 +29,12 @@ export default function ImageAnchor({
   
   return (
     <figure> 
-      <a className={styles.imagelink} href={url}>
+      <a 
+        className={styles.imagelink} 
+        href={url}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
         <picture id={id}>
           {!sources 
             ? null

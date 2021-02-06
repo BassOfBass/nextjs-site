@@ -16,7 +16,7 @@ import styles from "./breed-list.module.scss";
  * @param {BreedListProps} props 
  */
 export default function BreedList({ breeds }) {
-
+  
   return (
     <div className={styles.breedlist}>
       {breeds.map(({ 
@@ -44,7 +44,8 @@ export default function BreedList({ breeds }) {
           </header>
           <section>
             {/* <ImageAnchor 
-              url={image.url} 
+              url={image.url}
+              id={image.id} 
               width={image.width} 
               height={image.height}
             /> */}

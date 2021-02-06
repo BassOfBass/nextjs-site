@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
-import { catKey, breedEndPoint} from "../../../../../lib/apis/cats";
+import { breedsEndPoint} from "lib/apis/cats";
+import { catAPIKey } from "configs/env-vars"
+
 
 import { NextApiHandler } from "next";
 
@@ -10,9 +12,9 @@ export default async function getBreedList(req, res) {
 
   if (req.method === "GET") {
     try {
-      const response = await fetch(breedEndPoint, {
+      const response = await fetch(breedsEndPoint, {
         method: "GET",
-        headers: { "x-api-key": catKey }
+        headers: { "x-api-key": catAPIKey }
       });
   
       const breeds = await response.json();

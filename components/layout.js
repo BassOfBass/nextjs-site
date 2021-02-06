@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { authorGitHubPage } from "configs/env-vars"
 
 // @ts-expect-error
 import styles from "./layout.module.scss"
@@ -34,7 +35,7 @@ export default function Layout({ children }) {
 
       <footer className={styles.gfooter}>
         <address>
-          <a href="https://github.com/BassOfBass"><span className="fab fa-github"></span> My github</a>
+          <a href={authorGitHubPage}><span className="fab fa-github"></span> My github</a>
         </address>
         {/* <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

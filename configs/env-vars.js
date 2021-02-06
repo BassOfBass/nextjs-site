@@ -19,3 +19,6 @@ export const catAPIKey = process.env.CATAPI_KEY;
  * Details on authentication: https://docs.thedogapi.com/authentication
  */
 export const dogAPIKey = process.env.DOGAPI_KEY;
+
+export const authorGitHubPage = process.env.MY_GITHUB
+export const authorEmail = process.env.MY_EMAIL
