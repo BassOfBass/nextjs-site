@@ -4,9 +4,10 @@ import { useState } from "react";
 import { Layout, ImageAnchor } from "@components";
 import { CatAPIEntry} from "lib/apis/cats";
 
+import { GetServerSideProps } from "next"
 
 // @ts-expect-error
-import styles from "./cat-api.module.scss";
+import styles from "./by-images.module.scss";
 
 /**
  * @typedef CatAPIExampleProps
@@ -146,21 +147,15 @@ function CatAPIImages({ cats }) {
 
 }
 
+/**
+ * @type GetServerSideProps
+ */
 export async function getServerSideProps(context) {
-  const cats = await getCats();
-
-  if (!cats) {
-    return {
-      notFound: true
-    }
-  };
 
   return {
-    props: {
-      cats
-    }
-  };
+    notFound: true
+  }
 
 };
 
-export default CatAPIExample;
+export default CatAPIImages;
