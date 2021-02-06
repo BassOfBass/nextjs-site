@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import nodeFetch from "node-fetch";
 
 import { CatAPIBreedFull, catKey, defaultEndPoint } from "lib/apis/cats";
 
@@ -13,8 +13,8 @@ export default async function getBreedDetail(req, res) {
 
     try {
       const breedID = req.query["breed-id"];
-      const url = `${defaultEndPoint}?breed-ids=${breedID}`;
-      const response = await fetch(url, {
+      const url = `${defaultEndPoint}?breed_id=${breedID}`;
+      const response = await nodeFetch(url, {
         method: "GET",
         headers: { "x-api-key": catKey }
       })

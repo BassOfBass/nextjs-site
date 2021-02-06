@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { ImageAnchor } from "@components";
-import { CatAPIBreedFull } from "../../../lib/apis/cats"
+import { CatAPIBreedFull } from "lib/apis/cats"
 
 // @ts-expect-error
 import styles from "./breed-list.module.scss";
@@ -9,10 +9,10 @@ import styles from "./breed-list.module.scss";
 /**
  * @typedef BreedListProps
  * @property {CatAPIBreedFull[]} breeds
- * @property {string} [baseURL]
  */
 
 /**
+ * TODO: check why `image` properties are undefined
  * @param {BreedListProps} props 
  */
 export default function BreedList({ breeds }) {
@@ -31,7 +31,7 @@ export default function BreedList({ breeds }) {
         <article key={id} className={styles.breedentry}>
           <header>
             <h2 className={styles.breedname}>
-              <Link href={`/third-party-apis/cat-api/breeds/${id}`}>
+              <Link href={`/apis/cats/breeds/${id}`}>
                 <a>{name}</a>
               </Link>
             </h2>
@@ -43,11 +43,11 @@ export default function BreedList({ breeds }) {
             </p>
           </header>
           <section>
-            <ImageAnchor 
+            {/* <ImageAnchor 
               url={image.url} 
               width={image.width} 
               height={image.height}
-            />
+            /> */}
             <p>
               {description}
             </p>

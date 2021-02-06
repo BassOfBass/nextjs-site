@@ -1,10 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import ImageAnchor from "../../../components/image-anchor";
-import Layout from "../../../components/layout";
-
-const baseURL = "/third-party-apis/cat-api";
+import { Layout, ImageAnchor } from "@components"
 
 export default function CatAPICategories() {
 
@@ -18,13 +15,13 @@ export default function CatAPICategories() {
         <ul>
           <li>
             <h2>
-              <Link href={`${baseURL}/breeds`}>
+              <Link href={`/apis/cats/breeds`}>
                 <a>The list of breeds</a>
               </Link>
             </h2>
             <ImageAnchor url="" />
           </li>
-          <li>
+          {/* <li>
             <h2>
               <Link href="">
                 <a>Search by category</a>
@@ -39,7 +36,7 @@ export default function CatAPICategories() {
               </Link>
             </h2>
             <ImageAnchor url="" />
-          </li>
+          </li> */}
         </ul>
         
       </section>

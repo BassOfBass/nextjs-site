@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import { Layout, ImageAnchor } from "@components"
-import { retrieveAbsoluteUrl } from "lib/server";
+import { fetchAPIServer, retrieveAbsoluteUrl } from "lib/server";
 
 // @ts-expect-error
 import styles from "./[breed-id].module.scss";
@@ -12,20 +12,20 @@ import { CatAPIBreedFull } from "lib/apis/cats";
 
 /**
  * @typedef BreedDetailsProps
- * @property {CatAPIBreedFull} breed  
+ * @property {CatAPIBreedFull} breed
+ * @property {{ id:string, url:string, width: number, height: number }} image
  */
 
 /**
  * @param {BreedDetailsProps} props
  */
-function BreedDetails({ breed }) {
+function BreedDetails({ breed, image }) {
   const {  
     name,
     alt_names,
     origin,
     country_code,
     description,
-    image,
     weight,
     temperament,
     life_span,
@@ -64,11 +64,11 @@ function BreedDetails({ breed }) {
           </p>
         </header>
         <section className={styles.details}>
-          {/* <ImageAnchor 
+          <ImageAnchor 
             url={image.url} 
             width={image.width} 
             height={image.height}
-          /> */}
+          />
 
           <div className={styles.info}>
             <h2>
@@ -80,9 +80,9 @@ function BreedDetails({ breed }) {
             <p>
               Temperament: {temperament}
             </p>
-            {/* <p>
+            <p>
               Weight: {weight.metric}
-            </p> */}
+            </p>
             <p>
               Life span: {life_span}
             </p>
@@ -292,23 +292,28 @@ function BreedDetails({ breed }) {
  */
 export async function getServerSideProps({ req, params }) {
   const breedID = params["breed-id"];
-  const { origin } = retrieveAbsoluteUrl(req, "localhost:3000");
-  const url = new URL(`/apis/side/cats/breeds/${breedID}`, origin).toString();
-  const response = await fetch(url, {
+  const breeds = await fetchAPIServer(req, `/api/side/cats/breeds/${breedID}`, {
     method: "GET"
-  });
-  const breed = await response.json();
-  console.log(breed);
+  })
 
-  if (!breed) {
+  if (!breeds) {
     return {
       notFound: true
     }
   }
 
+  const {
+    breeds: [breed],
+    url,
+    width,
+    height,
+    id
+  } = breeds[0];
+
   return {
     props: {
-      breed
+      breed,
+      image: {id, url, width, height}
     }
   }
 }

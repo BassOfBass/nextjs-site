@@ -1,8 +1,7 @@
 import Head from "next/head";
-import { useState } from "react";
 
 import { Layout, BreedList } from "@components";
-import { retrieveAbsoluteUrl } from "lib/server";
+import { fetchAPIServer } from "lib/server";
 
 // @ts-expect-error
 import styles from "./index.module.scss";
@@ -27,16 +26,13 @@ import { CatAPIBreedFull } from "lib/apis/cats";
 /**
  * @param {CatBreedsProps} props 
  */
-function CatBreeds({ breeds, searchParams }) {
-  const [breedList, changeBreedList] = useState(breeds);
-  console.log(breeds[0].image);
-
-  /**
-   * @param {import("react").FormEvent<HTMLFormElement>} e 
-   */
-  function handleSearch(e) {
-    e.preventDefault();
-  }
+function CatBreeds({ breeds }) {
+  // /**
+  //  * @param {import("react").FormEvent<HTMLFormElement>} e 
+  //  */
+  // function handleSearch(e) {
+  //   e.preventDefault();
+  // }
 
   return (
     <Layout>
@@ -45,7 +41,7 @@ function CatBreeds({ breeds, searchParams }) {
       </Head>
       <h1>Search by breed</h1>
       <section className={styles.catbreeds}>
-        <div className={styles.searchform}>
+        {/* <div className={styles.searchform}>
           <div className={styles.buttonpanel}>
             <button className="hiddenswitch" type="button" title="Search options">
               <label htmlFor="searchoptions" className="hiddenlabel">
@@ -69,7 +65,7 @@ function CatBreeds({ breeds, searchParams }) {
               <input type="number" name="limit" id="breedlimit" min="1" max="100" defaultValue="18" />
             </div>
             
-            {/* <fieldset className="radioset">
+            <fieldset className="radioset">
               <legend>Order</legend>
               <div className="radiowrapper">
                 <input type="radio" className="radiopoint" name="order" id="breedrandom" value="RANDOM" defaultChecked/>
@@ -89,18 +85,18 @@ function CatBreeds({ breeds, searchParams }) {
                   <span className="fas fa-sort-down"></span>  Descending
                 </label>
               </div>
-            </fieldset> */}
+            </fieldset>
             <div>
               <button type="submit">
                 Submit
               </button>
             </div>
           </form>
-        </div>
+        </div> */}
 
         {/* <CatPagination /> */}
 
-        <BreedList breeds={breedList}/>
+        <BreedList breeds={breeds}/>
         
       </section>
     </Layout>
@@ -111,13 +107,9 @@ function CatBreeds({ breeds, searchParams }) {
  * @type GetServerSideProps
  */
 export async function getServerSideProps({ req }) {
-  const { origin } = retrieveAbsoluteUrl(req, "localhost:3000")
-  const url = new URL("/apis/side/cats/breeds", origin).toString();
-  const response = await fetch(url, {
+  const breeds = await fetchAPIServer(req, "/api/side/cats/breeds", {
     method: "GET"
   });
-
-  const breeds = await response.json();
 
   return {
     props: {

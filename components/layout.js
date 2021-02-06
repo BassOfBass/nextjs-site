@@ -15,11 +15,11 @@ export default function Layout({ children }) {
           </li>
         </ul>
         <nav className={styles.gnav}>
-          <div>
+          {/* <div>
             <Link href="/authorization">
               <a className={styles.gnavlink}><span className="fas fa-user-plus"></span> Register</a>
             </Link>
-          </div>
+          </div> */}
           <div>
             <Link href="/apis">
               <a className={styles.gnavlink}><span className="fas fa-database"></span> APIs</a>

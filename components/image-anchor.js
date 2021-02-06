@@ -4,6 +4,7 @@ import styles from "./image-anchor.module.scss"
 /**
  * @typedef ImageAnchorProps
  * @property {string} url
+ * @property {string} [id]
  * @property {string} [srcset]
  * @property {string | number} [width]
  * @property {string | number} [height]
@@ -16,17 +17,25 @@ import styles from "./image-anchor.module.scss"
  * An image which is also an anchor, which allows to open it by right/middle click.
  * @param {ImageAnchorProps} props 
  */
-export default function ImageAnchor({ url, srcset, width, height, alt, sources }) {
+export default function ImageAnchor({ 
+  url, 
+  id, 
+  srcset, 
+  width, 
+  height, 
+  alt, 
+  sources 
+}) {
   
   return (
     <figure> 
       <a className={styles.imagelink} href={url}>
-        <picture>
+        <picture id={id}>
           {!sources 
             ? null
-            : (sources.map(() => null))
+            : (sources.map(() => {}))
           }
-          <img 
+          <img
             src={url}
             srcSet={srcset}
             width={width}
