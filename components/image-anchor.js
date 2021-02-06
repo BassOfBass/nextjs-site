@@ -21,11 +21,11 @@ export default function ImageAnchor({ url, srcset, width, height, alt, sources }
   return (
     <figure> 
       <a className={styles.imagelink} href={url}>
-        {!sources 
-          ? null
-          : (sources.map(() => null))
-        }
         <picture>
+          {!sources 
+            ? null
+            : (sources.map(() => null))
+          }
           <img 
             src={url}
             srcSet={srcset}

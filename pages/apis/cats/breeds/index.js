@@ -110,9 +110,9 @@ function CatBreeds({ breeds, searchParams }) {
 /**
  * @type GetServerSideProps
  */
-export async function getServerSideProps({req}) {
+export async function getServerSideProps({ req }) {
   const { origin } = retrieveAbsoluteUrl(req, "localhost:3000")
-  const url = new URL("/apis/cats/breeds", origin).toString();
+  const url = new URL("/apis/side/cats/breeds", origin).toString();
   const response = await fetch(url, {
     method: "GET"
   });

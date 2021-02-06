@@ -21,7 +21,7 @@ export default async function getBreedDetail(req, res) {
       /**
        * @type Promise<CatAPIBreedFull>
        */
-      const breed = response.json();
+      const breed = await response.json();
 
       return res.status(200).json(breed);
 

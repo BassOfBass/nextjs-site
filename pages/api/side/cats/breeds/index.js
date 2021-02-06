@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import { catKey, breedEndPoint} from "../../../../lib/apis/cats";
+import { catKey, breedEndPoint} from "../../../../../lib/apis/cats";
 
 import { NextApiHandler } from "next";
 

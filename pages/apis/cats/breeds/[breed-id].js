@@ -293,13 +293,20 @@ function BreedDetails({ breed }) {
 export async function getServerSideProps({ req, params }) {
   const breedID = params["breed-id"];
   const { origin } = retrieveAbsoluteUrl(req, "localhost:3000");
-  const url = new URL(`/api/cat-api/breeds/${breedID}`, origin).toString();
+  const url = new URL(`/apis/side/cats/breeds/${breedID}`, origin).toString();
   const response = await fetch(url, {
     method: "GET"
   });
   const breed = await response.json();
+  console.log(breed);
 
-;  return {
+  if (!breed) {
+    return {
+      notFound: true
+    }
+  }
+
+  return {
     props: {
       breed
     }
