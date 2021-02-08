@@ -1,3 +1,7 @@
+/*
+  In order to keep server-only secrets safe, Next.js replaces `process.env.*` with the correct values at build time. This means that `process.env` is not a standard JavaScript object, so you’re not able to use object destructuring. Environment variables must be referenced as e.g. `process.env.NEXT_PUBLIC_PUBLISHABLE_KEY`, not `const { NEXT_PUBLIC_PUBLISHABLE_KEY } = process.env.`
+*/
+
 /**
  * Cat API
  * 
@@ -20,5 +24,11 @@ export const catAPIKey = process.env.CATAPI_KEY;
  */
 export const dogAPIKey = process.env.DOGAPI_KEY;
 
-export const authorGitHubPage = process.env.MY_GITHUB
-export const authorEmail = process.env.MY_EMAIL
+export const authorGitHubPage = process.env.MY_GITHUB;
+export const authorEmail = process.env.MY_EMAIL;
+export const mongoURL = process.env.MONGODB_URI;
+export const mongoDBName = process.env.MONGODB_DB;
+/**
+ * "dev" or "prod".
+ */
+export const productionMode = process.env.PRODUCTION_MODE || "prod";

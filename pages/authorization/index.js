@@ -1,12 +1,15 @@
 import Head from 'next/head'
 import { useState, FormEvent } from 'react'
 
-import Layout from "../../components/layout.js"
 
+import { Layout } from "@components"
+import { isProduction } from 'configs/vars.js';
+
+import { GetServerSideProps } from "next";
 // @ts-expect-error
 import styles from "./index.module.scss"
 
-export default function Authorization() {
+function Authorization() {
 
   const [isLoggedIn, switchIsLoggedIn] = useState(false);
   const [isPassVisible, switchPassVisibility] = useState(false);
@@ -140,3 +143,15 @@ export default function Authorization() {
   )
 }
 
+/**
+ * @type GetServerSideProps
+ */
+export async function getServerSideProps() {
+  if (isProduction) {
+    return {
+      notFound: true
+    }
+  }
+}
+
+export default Authorization;

@@ -1,4 +1,35 @@
-import { useState } from "react"
+import { useState } from "react";
+
+/**
+ * @type RecursiveMenuItem[]
+ */
+const menu = [
+  {
+    title: 'Item 1',
+    children: [
+      {
+        title: 'Item 1.1',
+        children: [
+          {
+            title: 'Item 1.1.1',
+          },
+        ],
+      },
+      {
+        title: 'Item 1.2',
+      },
+    ],
+  },
+  {
+    title: 'Item 2',
+    children: [
+      {
+        title: 'Item 2.1',
+      },
+    ],
+  },
+];
+
 /**
  * @typedef RecursiveMenuItem
  * @property {string} title 
