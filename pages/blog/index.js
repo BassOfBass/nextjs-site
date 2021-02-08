@@ -6,7 +6,7 @@ import { Layout } from "@components";
 
 import { GetStaticProps } from "next";
 import { BlogArticle } from "./[article]"
-import { productionMode } from "configs/env-vars";
+import { isProduction } from "configs/vars";
 
 /**
  * @typedef BlogListProps
@@ -24,7 +24,7 @@ function BlogList({ articles }) {
 
       <h1>My blog</h1>
       <section>
-        {articles.map(({ title, id, author}) => (
+        {/* {articles.map(({ title, id, author}) => (
           <article key={id}>
             <header>
               <h2>
@@ -44,7 +44,7 @@ function BlogList({ articles }) {
             <section></section>
             <footer></footer>
           </article>
-        ))}
+        ))} */}
       </section>
     </Layout>
   )
@@ -55,7 +55,7 @@ function BlogList({ articles }) {
  */
 export async function getStaticProps({}) {
 
-  if (productionMode === prod) {
+  if (isProduction) {
     return {
       notFound: true
     }

@@ -26,7 +26,7 @@ function CatSearch({ result }) {
 /**
  * @type GetServerSideProps
  */
-export async function GetServerSideProps({}){
+export async function getServerSideProps({}){
   return {
     props: {
       result
